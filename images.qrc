@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/icon4_selected.png</file>
+        <file>icons/icon1.png</file>
+        <file>icons/icon1_selected.png</file>
+        <file>icons/icon2.png</file>
+        <file>icons/icon2_selected.png</file>
+        <file>icons/icon3.png</file>
+        <file>icons/icon3_selected.png</file>
+        <file>icons/icon4.png</file>
+    </qresource>
+</RCC>
