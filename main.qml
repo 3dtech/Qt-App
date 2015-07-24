@@ -24,26 +24,36 @@ ApplicationWindow {
             id: thisbutton
             style: bottomButtonStyle
             //eval(id = "button"+nr);
-            Text  {
-                text: textAttribute
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font.pointSize: 7
-            }
-            Image {
-                id: theimage1
-                visible: true
-                z: 0
-                anchors.top:(parent.width/10)
-               // anchors.bottomMargin: (parent.width/3)
-                source: image1
-            }
+            Item {
+                Image {
+                    id: theimage1
+                    visible: true
+                    z: 0
+                    source: image1
+                    anchors.top : parent.top
+                }
 
-            Image {
-                id: theimage2
-                visible: false
-                anchors.fill: parent
-                source: image2
+                Image {
+                    id: theimage2
+                    visible: false
+                    source: image2
+                    anchors.top : parent.top
+                }
+                Text  {
+                    id: thetext
+                    text: textAttribute              
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pointSize: 7
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 0
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: childrenRect.width
+                }
+                anchors.centerIn: parent
+                width: childrenRect.width
+                height: childrenRect.height
+
             }
 
             anchors.topMargin: parent.height/2-height/2
@@ -62,11 +72,19 @@ ApplicationWindow {
                     name: "state1"
                     PropertyChanges { target:theimage1; visible: true}
                     PropertyChanges { target:theimage2; visible: false}
+                    PropertyChanges {
+                        target: thetext
+                        styleColor: "#000000"
+                    }
                 },
                 State {
                     name: "state2"
                     PropertyChanges { target:theimage2; visible: true}
                     PropertyChanges { target:theimage1; visible: false}
+                    PropertyChanges {
+                        target: thetext
+                        styleColor: "#F99400"
+                    }
                 }
             ]
             onClicked: {
@@ -120,11 +138,11 @@ ApplicationWindow {
         states: [
             State {
                 name: "state1"
-                PropertyChanges { target:grid2; visible: true}
+                //PropertyChanges { target:grid2; visible: true}
             },
             State {
                 name: "state2"
-                PropertyChanges { target:grid2; visible: false}
+                //PropertyChanges { target:grid2; visible: false}
             }
         ]
     }
@@ -142,10 +160,10 @@ ApplicationWindow {
     ButtonStyle {
         id: bottomButtonStyle
         background: Rectangle {
-            color: "transparent"
-            implicitWidth: 100
-            implicitHeight: 25
-            border.width: 1
+            color: "green"
+            //implicitWidth: 100
+            //implicitHeight: 25
+            border.width: 10
             border.color: "#f00"
             radius: 4
         }
