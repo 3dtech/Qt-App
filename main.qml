@@ -1,7 +1,5 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
-//import QtQuick 5.5
-//import QtQuick.Dialogs 1.2
 import QtQuick.Controls.Styles 1.3
 
 ApplicationWindow {
@@ -23,7 +21,6 @@ ApplicationWindow {
         Button {
             id: thisbutton
             style: bottomButtonStyle
-            //eval(id = "button"+nr);
             Item {
                 Image {
                     id: theimage1
@@ -42,10 +39,9 @@ ApplicationWindow {
                 Text  {
                     id: thetext
                     text: textAttribute              
-                    verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
                     font.pointSize: 7
-                    anchors.bottom: parent.bottom
+                    anchors.top: theimage1.bottom
                     anchors.bottomMargin: 0
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: childrenRect.width
@@ -70,29 +66,32 @@ ApplicationWindow {
             states: [
                 State {
                     name: "state1"
+                    when: !thisbutton.checked
                     PropertyChanges { target:theimage1; visible: true}
                     PropertyChanges { target:theimage2; visible: false}
                     PropertyChanges {
                         target: thetext
-                        styleColor: "#000000"
+                        color: "#000000"
                     }
                 },
                 State {
                     name: "state2"
+                    when: thisbutton.checked
                     PropertyChanges { target:theimage2; visible: true}
                     PropertyChanges { target:theimage1; visible: false}
                     PropertyChanges {
                         target: thetext
-                        styleColor: "#F99400"
+                        color: "#F99400"
                     }
                 }
             ]
             onClicked: {
-                mainItem.state="state1"
 
             }
             onCheckedChanged: {
-                thisbutton.state= (checked == false) ?  "state1" : "state2"
+                if (thisbutton.checked )
+                    mainItem.state="state"+nr
+                //thisbutton.state= (checked == false) ?  "state1" : "state2"
             }
         }
     }
@@ -111,7 +110,7 @@ ApplicationWindow {
     }
 
     Row {
-        id: row1
+        id: buttonRow1
         property int nrofMenuButtons: 4
         anchors.right: parent.right
         anchors.left: parent.left
@@ -131,32 +130,114 @@ ApplicationWindow {
 
     Item {
         id: mainItem
-        x: 48
-        y: 188
-        width: 200
-        height: 200
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: buttonRow1.top
         states: [
             State {
                 name: "state1"
-                //PropertyChanges { target:grid2; visible: true}
             },
             State {
                 name: "state2"
-                //PropertyChanges { target:grid2; visible: false}
+            },
+            State {
+                name: "state3"
+            },
+            State {
+                name: "state4"
             }
         ]
-    }
 
-    ToolButton {
-        id: toolButton1
-        x: 118
-        y: 106
-        iconSource: "icons/icon3.png"
-        iconName: "icons/icon3.png"
-        checkable: true
-        checked: false
-    }
+        Item {
+            id: item1
+            anchors.fill: parent
 
+            Text {
+                id: text1
+                anchors.centerIn: parent
+                text: qsTr("Directory")
+                font.pixelSize: 30
+            }
+
+            visible: false
+            State {
+                name: "active"
+                when: (mainItem.state == "state1")
+                PropertyChanges {
+                    target:  item1
+                    visible: true
+                    restoreEntryValues: true
+                }
+            }
+        }
+
+        Item {
+            id: item2
+            anchors.fill: parent
+
+            Text {
+                id: text2
+                anchors.centerIn: parent
+                text: qsTr("A-Z")
+                font.pixelSize: 30
+            }
+            visible: false
+            State {
+                name: "active"
+                when: parent.state == "state2"
+                PropertyChanges {
+                    target:  item2
+                    visible: true
+                    restoreEntryValues: true
+                }
+            }
+        }
+
+        Item {
+            id: item3
+            anchors.fill: parent
+
+            Text {
+                id: text3
+                anchors.centerIn: parent
+                text: qsTr("Map")
+                font.pixelSize: 30
+            }
+            visible: false
+            State {
+                name: "active"
+                when: parent.state == "state3"
+                PropertyChanges {
+                    target:  item3
+                    visible: true
+                    restoreEntryValues: true
+                }
+            }
+        }
+
+        Item {
+            id: item4
+            anchors.fill: parent
+
+            Text {
+                id: text4
+                anchors.centerIn: parent
+                text: qsTr("Contact")
+                font.pixelSize: 30
+            }
+            visible: false
+            State {
+                name: "active"
+                when: parent.state == "state4"
+                PropertyChanges {
+                    target:  item4
+                    visible: true
+                    restoreEntryValues: true
+                }
+            }
+        }
+    }
     ButtonStyle {
         id: bottomButtonStyle
         background: Rectangle {
