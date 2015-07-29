@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.3
+import "external/JSONListModel/JSONListModel.qml"
 
 ApplicationWindow {
     id: applicationWindow1
@@ -21,6 +22,7 @@ ApplicationWindow {
         Button {
             id: thisbutton
             style: bottomButtonStyle
+            exclusiveGroup: bottomTabExclusive
             Item {
                 Image {
                     id: theimage1
@@ -118,6 +120,9 @@ ApplicationWindow {
         anchors.topMargin: parent.height-parent.height/10
         anchors.bottom: parent.bottom
 
+        ExclusiveGroup {
+            id: bottomTabExclusive
+        }
 
         ListView {
             property int nrofMenuButtons: 4
@@ -134,20 +139,6 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: buttonRow1.top
-        states: [
-            State {
-                name: "state1"
-            },
-            State {
-                name: "state2"
-            },
-            State {
-                name: "state3"
-            },
-            State {
-                name: "state4"
-            }
-        ]
 
         Item {
             id: item1
@@ -161,15 +152,17 @@ ApplicationWindow {
             }
 
             visible: false
-            State {
-                name: "active"
-                when: (mainItem.state == "state1")
-                PropertyChanges {
-                    target:  item1
-                    visible: true
-                    restoreEntryValues: true
+            states: [
+                State {
+                    name: "active"
+                    when: (mainItem.state == "state1")
+                    PropertyChanges {
+                        target:  item1
+                        visible: true
+                        restoreEntryValues: true
+                    }
                 }
-            }
+             ]
         }
 
         Item {
@@ -183,15 +176,17 @@ ApplicationWindow {
                 font.pixelSize: 30
             }
             visible: false
-            State {
-                name: "active"
-                when: parent.state == "state2"
-                PropertyChanges {
-                    target:  item2
-                    visible: true
-                    restoreEntryValues: true
+            states: [
+                State {
+                    name: "active"
+                    when: (mainItem.state == "state2")
+                    PropertyChanges {
+                        target:  item2
+                        visible: true
+                        restoreEntryValues: true
+                    }
                 }
-            }
+             ]
         }
 
         Item {
@@ -205,15 +200,17 @@ ApplicationWindow {
                 font.pixelSize: 30
             }
             visible: false
-            State {
-                name: "active"
-                when: parent.state == "state3"
-                PropertyChanges {
-                    target:  item3
-                    visible: true
-                    restoreEntryValues: true
+            states: [
+                State {
+                    name: "active"
+                    when: (mainItem.state == "state3")
+                    PropertyChanges {
+                        target:  item3
+                        visible: true
+                        restoreEntryValues: true
+                    }
                 }
-            }
+             ]
         }
 
         Item {
@@ -227,15 +224,17 @@ ApplicationWindow {
                 font.pixelSize: 30
             }
             visible: false
-            State {
-                name: "active"
-                when: parent.state == "state4"
-                PropertyChanges {
-                    target:  item4
-                    visible: true
-                    restoreEntryValues: true
+            states: [
+                State {
+                    name: "active"
+                    when: (mainItem.state == "state4")
+                    PropertyChanges {
+                        target:  item4
+                        visible: true
+                        restoreEntryValues: true
+                    }
                 }
-            }
+             ]
         }
     }
     ButtonStyle {
