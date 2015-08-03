@@ -1,5 +1,5 @@
 import QtQuick 2.4
-import QtQuick.Controls 1.3
+import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.3
 import "external/JSONListModel" as JSON
 
@@ -12,9 +12,18 @@ ApplicationWindow {
 
     JSON.JSONListModel{
         id: azModel
-        source: "data/locations.json"
+        source: "/data/locations.json"
         query: "$.data[*]"
     }
+
+    /*JSON.JSONListModel{
+        id: azModel
+        json: '\
+            {"data":[{"names_en":"1","description_en":"2"},{"g":"3"}]}\
+        '
+        query: "$.data[*]"
+    }*/
+
 
     ListModel {
         id: buttonRow1Model
@@ -94,7 +103,7 @@ ApplicationWindow {
                 }
             ]
             onClicked: {
-
+                console.log ( "azModel=",azModel.model)
             }
             onCheckedChanged: {
                 if (thisbutton.checked )
@@ -174,6 +183,42 @@ ApplicationWindow {
         Item {
             id: item2
             anchors.fill: parent
+            ListView {
+                anchors.fill: parent
+                clip: true
+                height : 200
+                width : 200
+                model: azModel.model
+                /*itemDelegate: Item {
+                    Text {
+                        color: "#000000"
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        elide: styleData.elideMode
+                        text: styleData.value
+                    }
+                }*/
+                delegate: Component {
+                    Row {
+                        spacing: 20
+                        //anchors.top: parent.top
+                        //anchors.centerIn: parent
+                        Text {
+                            id: text1
+                            text: "blah"
+                        }
+
+                        Text {
+                            id: text2
+                            text: model.names_en
+                        }
+                        Text {
+
+                            text: model.description_en
+                        }
+                    }
+                }
+            }
 
             Text {
                 id: text2
