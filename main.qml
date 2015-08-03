@@ -1,7 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.3
-import "external/JSONListModel/JSONListModel.qml"
+import "external/JSONListModel" as JSON
 
 ApplicationWindow {
     id: applicationWindow1
@@ -9,6 +9,12 @@ ApplicationWindow {
     width: 640
     height: 480
     visible: true
+
+    JSON.JSONListModel{
+        id: azModel
+        source: "data/locations.json"
+        query: "$.data[*]"
+    }
 
     ListModel {
         id: buttonRow1Model
