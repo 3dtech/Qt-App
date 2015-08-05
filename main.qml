@@ -250,9 +250,34 @@ ApplicationWindow {
                 text: qsTr("Map")
                 font.pixelSize: 30
             }
-            Image {
-                source: "data/map.jpg"
+            PinchArea {
+               // pinch.target: parent
+                z: 1
                 anchors.fill: parent
+                onPinchUpdated: {
+                    console.log( "pinch detexted imagex=",mapimage.x)
+                    mapimage.scale = (pinch.scale)
+                    mapFlickable.contentHeight = mapimage.height* mapimage.scale
+                    mapFlickable.contentWidth = mapimage.width * mapimage.scale
+                }
+                Flickable {
+                    id: mapFlickable
+                    anchors.fill: parent
+                    boundsBehavior: Flickable.StopAtBounds
+                    contentHeight: contentItem.childrenRect.height
+                    contentWidth: contentItem.childrenRect.width
+                    contentItem.anchors.top: parent.top
+                    contentItem.anchors.left: parent.left
+                    Image {
+                        id: mapimage
+                        anchors.left: parent.left
+                        anchors.top: parent.top
+                        width: 2000
+                        height: 2000
+                        source: "data/map.jpg"
+                        //anchors.fill: parent
+                    }
+                }
             }
             visible: false
             states: [
