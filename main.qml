@@ -250,6 +250,10 @@ ApplicationWindow {
                 text: qsTr("Map")
                 font.pixelSize: 30
             }
+            Image {
+                source: "data/map.jpg"
+                anchors.fill: parent
+            }
             visible: false
             states: [
                 State {
