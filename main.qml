@@ -251,15 +251,29 @@ ApplicationWindow {
                 font.pixelSize: 30
             }
             PinchArea {
+                Rectangle{
+                    //z:2
+                    anchors.fill: parent
+                    color: transparent
+                    border.width: 2
+                    border.color: "#3161e2"
+
+                }
+
                // pinch.target: parent
                 z: 1
                 anchors.fill: parent
                 onPinchUpdated: {
-                    console.log( "pinch detexted imagex=",mapimage.x)
-                    mapimage.scale = (pinch.scale)
-                    mapFlickable.contentHeight = mapimage.height* mapimage.scale
-                    mapFlickable.contentWidth = mapimage.width * mapimage.scale
+                    console.log( "pinch happened, imagex=",mapimage.x,"imageleft=",mapimage.left,"mapflickablex=",mapFlickable.x)
+                    mapimage.scale = (mapimage.previousscale*pinch.scale)
+                    mapFlickable.contentHeight = mapFlickable.contentItem.childrenRect.height
+                    mapFlickable.contentWidth = mapFlickable.contentItem.childrenRect.width
                 }
+                onPinchFinished: {
+                    mapimage.previousscale=mapimage.scale
+                }
+
+
                 Flickable {
                     id: mapFlickable
                     anchors.fill: parent
@@ -268,8 +282,16 @@ ApplicationWindow {
                     contentWidth: contentItem.childrenRect.width
                     contentItem.anchors.top: parent.top
                     contentItem.anchors.left: parent.left
+
+                    Rectangle {
+                        color: "#beb424"
+                        anchors.fill: parent
+                    }
+
                     Image {
                         id: mapimage
+                        property var previousscale: 1
+                        fillMode: Image.PreserveAspectFit
                         anchors.left: parent.left
                         anchors.top: parent.top
                         width: 2000
@@ -279,6 +301,7 @@ ApplicationWindow {
                     }
                 }
             }
+
             visible: false
             states: [
                 State {
