@@ -1,7 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.3
-import "external/JSONListModel" as JSON
 
 ApplicationWindow {
     id: applicationWindow1
@@ -9,20 +8,6 @@ ApplicationWindow {
     width: 640
     height: 480
     visible: true
-
-    JSON.JSONListModel{
-        id: azModel
-        source: "/data/locations.json"
-        query: "$.data[*]"
-    }
-
-    /*JSON.JSONListModel{
-        id: azModel
-        json: '\
-            {"data":[{"names_en":"1","description_en":"2"},{"g":"3"}]}\
-        '
-        query: "$.data[*]"
-    }*/
 
     Rectangle {
         border.width: 2

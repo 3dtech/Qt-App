@@ -1,8 +1,14 @@
 import QtQuick 2.4
-
+import "external/JSONListModel" as JSON
 Item {
     id: item2
     anchors.fill: parent
+
+    JSON.JSONListModel{
+        id: azModel
+        source: "/data/locations.json"
+        query: "$.data[*]"
+    }
     ListView {
         anchors.fill: parent
         clip: true
