@@ -4,5 +4,10 @@
         <file>main.cpp</file>
         <file>external/JSONListModel/JSONListModel.qml</file>
         <file>external/JSONListModel/jsonpath.js</file>
+        <file>MainButtonRow.qml</file>
+        <file>DirectoryPage.qml</file>
+        <file>AZPage.qml</file>
+        <file>MapPage.qml</file>
+        <file>ContactPage.qml</file>
     </qresource>
 </RCC>
