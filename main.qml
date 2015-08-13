@@ -1,6 +1,5 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles 1.3
 
 ApplicationWindow {
     id: applicationWindow1
@@ -19,8 +18,13 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        width: childrenRect.width
-        height: childrenRect.height
+        width: parent.width
+        height: parent.height/10
+        /*Rectangle {
+            border.color: "#ff0000"
+            border.width: 2
+            anchors.fill: parent
+        }*/
     }
 
 
@@ -59,17 +63,6 @@ ApplicationWindow {
 
         ContactPage {
 
-        }
-    }
-    ButtonStyle {
-        id: bottomButtonStyle
-        background: Rectangle {
-            color: "green"
-            //implicitWidth: 100
-            //implicitHeight: 25
-            border.width: 10
-            border.color: "#f00"
-            radius: 4
         }
     }
 }

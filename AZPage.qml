@@ -30,7 +30,7 @@ Item {
                 }
                 Text {
 
-                    text: model.description_en
+                  //  text: model.description_en
                 }
             }
         }

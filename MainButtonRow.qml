@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.3
 Item {
     id: mainButtonRow
     ListModel {
@@ -85,25 +86,22 @@ Item {
             onCheckedChanged: {
                 if (thisbutton.checked )
                     mainItem.state="state"+nr
-                //thisbutton.state= (checked == false) ?  "state1" : "state2"
             }
         }
     }
     Item {
         id: buttonRow1
         property int nrofMenuButtons: 4
-        anchors.right: parent.right
-        anchors.left: parent.left
-        width: childrenRect.width
-        height: childrenRect.height
-       // anchors.top: parent.top
-      //  anchors.topMargin: parent.height-parent.height/10
-        anchors.bottom: parent.bottom
-        Rectangle {
-            border.color: "#ff0000"
+       /* width: 100
+        height: 100
+        anchors.left: parent.left*/
+        anchors.fill: parent
+       /* Rectangle {
+            z: 3
+            color: "#9c840c"
             border.width: 2
             anchors.fill: parent
-        }
+        }*/
 
         ExclusiveGroup {
             id: bottomTabExclusive
@@ -115,6 +113,17 @@ Item {
             model: buttonRow1Model
             delegate: bottomButtonDelegate
 
+        }
+    }
+    ButtonStyle {
+        id: bottomButtonStyle
+        background: Rectangle {
+            color: "green"
+            //implicitWidth: 100
+            //implicitHeight: 25
+            border.width: 10
+            border.color: "#f00"
+            radius: 4
         }
     }
 }
