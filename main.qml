@@ -15,6 +15,7 @@ ApplicationWindow {
     }
 
     MainButtonRow{
+        id: mainButtonRow
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
@@ -48,7 +49,7 @@ ApplicationWindow {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.bottom: buttonRow1.top
+        anchors.bottom: mainButtonRow.top
         DirectoryPage {
             anchors.fill: parent
         }

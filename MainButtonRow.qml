@@ -2,7 +2,6 @@ import QtQuick 2.4
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.3
 Item {
-    id: mainButtonRow
     ListModel {
         id: buttonRow1Model
         ListElement { nr:1; name:"directoryButton"; textAttribute: "Directory"; image1:"icons/icon1.png"; image2: "icons/icon1_selected.png" }
@@ -81,7 +80,6 @@ Item {
                 }
             ]
             onClicked: {
-                console.log ( "azModel=",azModel.model)
             }
             onCheckedChanged: {
                 if (thisbutton.checked )
@@ -90,19 +88,8 @@ Item {
         }
     }
     Item {
-        id: buttonRow1
         property int nrofMenuButtons: 4
-       /* width: 100
-        height: 100
-        anchors.left: parent.left*/
         anchors.fill: parent
-       /* Rectangle {
-            z: 3
-            color: "#9c840c"
-            border.width: 2
-            anchors.fill: parent
-        }*/
-
         ExclusiveGroup {
             id: bottomTabExclusive
         }
