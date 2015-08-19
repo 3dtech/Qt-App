@@ -1,0 +1,3 @@
+[submodule "external/WayfinderQML"]
+	path = external/WayfinderQML
+	url = https://github.com/3dtech/3DWayfinderQML.git
