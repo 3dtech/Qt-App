@@ -3,16 +3,11 @@ import QtQuick.Controls 1.4
 
 ApplicationWindow {
     id: applicationWindow1
-    title: qsTr("Hello World")
+    title: qsTr("Wayfinder")
     width: 640
     height: 480
     visible: true
 
-    Rectangle {
-        border.width: 2
-        border.color: "#00FF00"
-        anchors.fill: parent
-    }
 
     MainButtonRow{
         id: mainButtonRow

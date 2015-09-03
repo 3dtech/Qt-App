@@ -12,9 +12,9 @@ Item {
         font.pixelSize: 30
     }
 
-    Wayfinder2D {
+    /*Wayfinder2D {
         anchors.fill: parent
-    }
+    }*/
 
     visible: false
     states: [
