@@ -9,7 +9,7 @@ ApplicationWindow {
     visible: true
 
 
-    MainButtonRow{
+    MainButtonRow {
         id: mainButtonRow
         anchors.left: parent.left
         anchors.right: parent.right
@@ -22,22 +22,6 @@ ApplicationWindow {
             anchors.fill: parent
         }*/
     }
-
-
-    menuBar: MenuBar {
-        Menu {
-            title: qsTr("&File")
-            MenuItem {
-                text: qsTr("&Open")
-            }
-            MenuItem {
-                text: qsTr("E&xit")
-                onTriggered: Qt.quit();
-            }
-        }
-    }
-
-
 
     Item {
         id: mainItem
