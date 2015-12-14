@@ -1,0 +1,2 @@
+module styles.ios
+singleton Style 1.0 qrc:/Style.qml

@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>external/WayfinderQML/qmldir</file>
+        <file>styles/base/qmldir</file>
+        <file>styles/ios/qmldir</file>
     </qresource>
 </RCC>
